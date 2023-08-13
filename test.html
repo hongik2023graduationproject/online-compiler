@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <link rel="stylesheet" type="text/css" href="test.css" />
+    </head>
+    <body>
+        <div class="textarea-container">
+            <textarea id="myTextarea"></textarea>
+            <div class="line-numbers"></div>
+        </div>
+
+        <script>
+            const textarea = document.getElementById("myTextarea");
+            const lineNumbers = document.querySelector(".line-numbers");
+            textarea.addEventListener("keyup", (event) => {
+                const numberOfLines = event.target.value.split("\n").length;
+
+                lineNumbers.innerHTML = Array(numberOfLines)
+                    .fill("<span></span>")
+                    .join("");
+            });
+
+            textarea.addEventListener("input", () => {
+                const numberOfLines = textarea.value.split("\n").length;
+                lineNumbers.innerHTML = Array.from(
+                    { length: numberOfLines },
+                    (_, index) => `<span>${index + 1}</span>`
+                ).join("");
+            });
+        </script>
+    </body>
+</html>

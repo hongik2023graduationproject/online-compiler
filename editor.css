@@ -72,7 +72,40 @@
     font-size: 16px;
 }
 
-.source-text textarea,
+.source-text {
+    display: inline-flex;
+    gap: 10px;
+    font-family: monospace;
+    line-height: 21px;
+    border-radius: 2px;
+    padding: 20px 20px 20px 10px;
+}
+.source-text textarea {
+    font-size: 20px;
+    font-family: 맑은 고딕 Semilight;
+    width: 100%;
+    line-height: 30px;
+    padding: 0;
+    border: 0;
+    min-width: 500px;
+    outline: none;
+    resize: none;
+}
+.line-numbers {
+    font-size: 20px;
+    line-height: 30px;
+    font-family: 맑은 고딕 Semilight;
+    width: 20px;
+    text-align: right;
+}
+.line-numbers span {
+    counter-increment: linenumber;
+}
+.line-numbers span::before {
+    content: counter(linenumber);
+    display: block;
+    color: #c2bfbf;
+}
 .input-text textarea,
 .output-text textarea {
     border: none;
@@ -86,6 +119,7 @@
 textarea:focus {
     outline: none;
 }
+
 .td-bottom {
     border-top: 1.5px solid #c9c9c9;
 }
