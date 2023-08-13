@@ -6,8 +6,7 @@
 .logo {
     width: 30px;
     height: 30px;
-
-    margin-left: 23px;
+    margin-left: 290px;
 }
 .tolelom {
     font-family: Brush Script MT;
@@ -22,14 +21,19 @@
     display: flex;
     align-items: center;
 }
-.nav-items {
+.nav-items-left {
     display: flex;
     margin-left: 12px;
-    font-weight: bold;
-    font-size: 15px;
+}
+.nav-items-right {
+    display: flex;
+    margin-left: auto;
+    margin-right: 290px;
 }
 .nav-item {
     margin-left: 25px;
+    font-weight: bold;
+    font-size: 15px;
 }
 
 .contents-table {
@@ -38,9 +42,7 @@
     margin-right: auto;
     width: 70%;
     height: 750px;
-    /* border: 1px solid #444444; */
     border-spacing: 8px;
-    /* border-collapse: collapse; */
 }
 .contents-table td {
     border: 2px solid #77c2ef;
@@ -99,15 +101,14 @@ textarea:focus {
     align-items: center;
 }
 .td-bottom-button {
-    /* border-right: 1.5px solid red; */
     text-align: center;
     line-height: 60px;
     color: white;
     font-weight: bold;
+    font-size: 18px;
 }
 .clear-button {
     background-color: #cc0000;
-    border-top-left-radius: 10px;
 }
 .run-button {
     background-color: #017fca;
