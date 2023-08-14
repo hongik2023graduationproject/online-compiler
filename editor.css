@@ -71,9 +71,19 @@
     border-bottom: 1.5px solid #c9c9c9;
 }
 .td-title-items {
+    display: grid;
+    grid-template-columns: 80px auto 85px;
     line-height: 50px;
     margin-left: 20px;
     font-size: 16px;
+}
+.td-title-item {
+    display: flex;
+    align-items: center;
+}
+.toggle {
+    width: 43px;
+    height: 23px;
 }
 
 .source-text {
