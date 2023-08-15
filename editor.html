@@ -4,12 +4,12 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>tolelom</title>
-        <link rel="stylesheet" type="text/css" href="editor.css" />
+        <link rel="stylesheet" type="text/css" href="./editor.css" />
     </head>
     <body>
         <div class="nav">
             <div>
-                <img src="./king.jpg" class="logo" />
+                <img src="./img/king.jpg" class="logo" />
             </div>
             <div class="tolelom">tolelom</div>
 
@@ -18,7 +18,7 @@
                 <div class="nav-item">문법</div>
                 <div class="nav-item">도움말</div>
                 <div class="nav-item">
-                    <img src="./search.jpg" class="search" />
+                    <img src="./img/search.jpg" class="search" />
                 </div>
             </div>
             <div class="nav-items-right">
@@ -44,36 +44,38 @@
                                         <span></span>
                                     </div>
                                     <textarea
+                                        id="source"
                                         wrap="off"
                                         spellcheck="false"
                                     ></textarea>
                                 </div>
-                                <script src="editor.js"></script>
+                                <script src="./editor.js"></script>
                                 <div class="td-bottom">
                                     <div class="td-bottom-items">
-                                        <div class="td-bottom-item">
+                                        <button class="td-bottom-item">
                                             <img
-                                                src="./copy.jpg"
+                                                src="./img/copy.jpg"
                                                 class="icon"
                                             />
-                                        </div>
-                                        <div class="td-bottom-item">
+                                        </button>
+                                        <button class="td-bottom-item">
                                             <img
-                                                src="./save.jpg"
+                                                src="./img/save.jpg"
                                                 class="icon"
                                             />
-                                        </div>
+                                        </button>
                                         <div class="td-bottom-space"></div>
-                                        <div
+                                        <button
                                             class="td-bottom-button clear-button"
+                                            onclick="sourceReset()"
                                         >
                                             초기화
-                                        </div>
-                                        <div
+                                        </button>
+                                        <button
                                             class="td-bottom-button run-button"
                                         >
                                             실행하기
-                                        </div>
+                                        </button>
                                     </div>
                                 </div>
                             </div>
@@ -87,7 +89,7 @@
                                         <div class="td-title-item"></div>
                                         <div class="td-title-item">
                                             <img
-                                                src="./toggle.jpg"
+                                                src="./img/toggle.jpg"
                                                 class="toggle"
                                             />
                                         </div>
@@ -124,4 +126,9 @@
             </table>
         </div>
     </body>
+    <script>
+        function sourceReset() {
+            document.getElementById("source").value = "";
+        }
+    </script>
 </html>

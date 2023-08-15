@@ -148,10 +148,12 @@ textarea:focus {
     height: 100%;
 }
 .td-bottom-item {
+    border: none;
     border-right: 1.5px solid #c9c9c9;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: transparent;
 }
 .td-bottom-button {
     text-align: center;
@@ -159,6 +161,7 @@ textarea:focus {
     color: white;
     font-weight: bold;
     font-size: 18px;
+    border: none;
 }
 .clear-button {
     background-color: #cc0000;
