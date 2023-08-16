@@ -1,9 +1,13 @@
 const express = require("express");
 const app = express();
+
 const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
+
 var fs = require("fs");
+const os = require("os-utils");
 const { exec } = require("child_process");
+
 app.use(express.static(__dirname));
 app.listen(8080, () => console.log("listening on 8080"));
 
@@ -16,7 +20,6 @@ app.post("/run", (req, res) => {
     console.log(Object.values(req.body)[0]); //source
     console.log(Object.values(req.body)[1]); //input
     console.log("===========================");
-    //res.send(JSON.stringify("컴파일 결과"));
 
     fs.writeFile("main.py", Object.values(req.body)[0], function (err) {
         if (err) throw err;
@@ -34,7 +37,11 @@ app.post("/run", (req, res) => {
         pythonErrorCommand = `${pythonCommand} < input.txt 2> error.txt`;
     }
 
+    const startTime = new Date();
     exec(pythonErrorCommand, (error, stdout, stderr) => {
+        const endTime = new Date();
+        const executionTime = (endTime - startTime) / 1000; // in seconds
+
         let errorData = "";
         if (error) {
             console.error(`exec error: ${error}`);
@@ -44,10 +51,20 @@ app.post("/run", (req, res) => {
         if (stderr) {
             console.log(`stderr: ${stderr}`);
         }
-        res.send(JSON.stringify(`${stdout}`));
-        // res.send(
-        //     `${errorData}<br>${stderr}<br>${stdout}`
-        // );
+
+        const memoryUsage = (os.freememPercentage() * os.totalmem()) / 1024; // in KB
+        os.cpuUsage((cpuUsage) => {
+            console.log(`Execution Time: ${executionTime} seconds`);
+            console.log(`Estimated Memory Usage: ${memoryUsage.toFixed(2)} KB`);
+        });
+
+        res.send(
+            JSON.stringify(
+                `${stdout}\n\nExecution Time: ${executionTime} seconds\nEstimated Memory Usage: ${memoryUsage.toFixed(
+                    2
+                )} KB`
+            )
+        );
 
         //파일 삭제
         fs.unlinkSync("main.py");

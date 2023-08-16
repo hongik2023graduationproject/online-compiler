@@ -147,15 +147,6 @@
                     input: document.getElementById("input").value,
                 },
                 success: (result) => {
-                    // document.getElementById("output").value = JSON.stringify(
-                    //     result,
-                    //     (key, val) => {
-                    //         if (typeof val === "string") {
-                    //             return val.replace(/\r\n/g, ""); // \r\n 제거
-                    //         }
-                    //         return val;
-                    //     }
-                    // );
                     document.getElementById("output").value = result;
                 },
                 error: function (request, status, error) {
