@@ -4,6 +4,7 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>tolelom</title>
+        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
         <link rel="stylesheet" type="text/css" href="./editor.css" />
     </head>
     <body>
@@ -73,6 +74,7 @@
                                         </button>
                                         <button
                                             class="td-bottom-button run-button"
+                                            onClick="sourceRun()"
                                         >
                                             실행하기
                                         </button>
@@ -97,6 +99,7 @@
                                 </div>
                                 <div class="input-text">
                                     <textarea
+                                        id="input"
                                         wrap="off"
                                         spellcheck="false"
                                     ></textarea>
@@ -115,6 +118,7 @@
                                 </div>
                                 <div class="output-text">
                                     <textarea
+                                        id="output"
                                         wrap="off"
                                         spellcheck="false"
                                     ></textarea>
@@ -129,6 +133,35 @@
     <script>
         function sourceReset() {
             document.getElementById("source").value = "";
+            document.getElementById("input").value = "";
+            document.getElementById("output").value = "";
+        }
+
+        function sourceRun() {
+            $.ajax({
+                url: "/run",
+                method: "POST",
+                dataType: "json",
+                data: {
+                    source: document.getElementById("source").value,
+                    input: document.getElementById("input").value,
+                },
+                success: (result) => {
+                    // document.getElementById("output").value = JSON.stringify(
+                    //     result,
+                    //     (key, val) => {
+                    //         if (typeof val === "string") {
+                    //             return val.replace(/\r\n/g, ""); // \r\n 제거
+                    //         }
+                    //         return val;
+                    //     }
+                    // );
+                    document.getElementById("output").value = result;
+                },
+                error: function (request, status, error) {
+                    console.log("에러 발생: " + error);
+                },
+            });
         }
     </script>
 </html>
