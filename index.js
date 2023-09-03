@@ -8,6 +8,7 @@ var fs = require("fs");
 const os = require("os-utils");
 const { exec } = require("child_process");
 
+// db 연결
 const MongoClient = require("mongodb").MongoClient;
 var db;
 MongoClient.connect(
@@ -32,6 +33,7 @@ app.get("/editor", (req, res) => {
   res.sendFile(__dirname + "/editor.html");
 });
 
+// 소스코드 실행
 app.post("/run", (req, res) => {
   console.log(req.body);
   console.log(Object.values(req.body)[0]); //source
@@ -57,7 +59,7 @@ app.post("/run", (req, res) => {
   const startTime = new Date();
   exec(pythonErrorCommand, (error, stdout, stderr) => {
     const endTime = new Date();
-    const executionTime = (endTime - startTime) / 1000; // in seconds
+    const executionTime = (endTime - startTime) / 1000;
 
     let errorData = "";
     if (error) {
@@ -69,7 +71,7 @@ app.post("/run", (req, res) => {
       console.log(`stderr: ${stderr}`);
     }
 
-    const memoryUsage = (os.freememPercentage() * os.totalmem()) / 1024; // in KB
+    const memoryUsage = (os.freememPercentage() * os.totalmem()) / 1024;
     os.cpuUsage((cpuUsage) => {
       console.log(`Execution Time: ${executionTime} seconds`);
       console.log(`Estimated Memory Usage: ${memoryUsage.toFixed(2)} KB`);
@@ -89,3 +91,18 @@ app.post("/run", (req, res) => {
     fs.unlinkSync("error.txt");
   });
 });
+
+// 로그인
+app.get("/login", (req, res) => {
+  res.sendFile(__dirname + "/login.html");
+});
+
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
+const session = require("express-session");
+
+app.use(
+  session({ secret: "비밀코드", resave: true, saveUninitialized: false })
+);
+app.use(passport.initialize());
+app.use(passport.session());
