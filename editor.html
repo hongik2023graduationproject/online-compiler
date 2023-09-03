@@ -1,158 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>tolelom</title>
-        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="./editor.css" />
-    </head>
-    <body>
-        <div class="nav">
-            <div>
-                <img src="./img/king.jpg" class="logo" />
-            </div>
-            <div class="tolelom">tolelom</div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tolelom</title>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="./editor.css" />
+  </head>
+  <body>
+    <div class="nav">
+      <div>
+        <img src="./img/king.jpg" class="logo" />
+      </div>
+      <div class="tolelom">tolelom</div>
 
-            <div class="nav-items-left">
-                <div class="nav-item">에디터</div>
-                <div class="nav-item">문법</div>
-                <div class="nav-item">도움말</div>
-                <div class="nav-item">
-                    <img src="./img/search.jpg" class="search" />
+      <div class="nav-items-left">
+        <div class="nav-item" onclick="location.href='editor.html'">에디터</div>
+        <div class="nav-item">문법</div>
+        <div class="nav-item">도움말</div>
+        <div class="nav-item">
+          <img src="./img/search.jpg" class="search" />
+        </div>
+      </div>
+      <div class="nav-items-right">
+        <div class="nav-item" onclick="location.href='login.html'">로그인</div>
+      </div>
+    </div>
+
+    <div class="main">
+      <table class="contents-table">
+        <tbody>
+          <tr>
+            <td rowspan="2">
+              <div class="source-code">
+                <div class="td-title">
+                  <div class="td-title-items">
+                    <div class="td-title-item">소스 코드</div>
+                  </div>
                 </div>
-            </div>
-            <div class="nav-items-right">
-                <div class="nav-item">로그인</div>
-            </div>
-        </div>
+                <div class="source-text">
+                  <div class="line-numbers">
+                    <span></span>
+                  </div>
+                  <textarea
+                    id="source"
+                    wrap="off"
+                    spellcheck="false"
+                  ></textarea>
+                </div>
+                <script src="./editor.js"></script>
+                <div class="td-bottom">
+                  <div class="td-bottom-items">
+                    <button class="td-bottom-item">
+                      <img src="./img/copy.jpg" class="icon" />
+                    </button>
+                    <button class="td-bottom-item">
+                      <img src="./img/save.jpg" class="icon" />
+                    </button>
+                    <div class="td-bottom-space"></div>
+                    <button
+                      class="td-bottom-button clear-button"
+                      onclick="sourceReset()"
+                    >
+                      초기화
+                    </button>
+                    <button
+                      class="td-bottom-button run-button"
+                      onClick="sourceRun()"
+                    >
+                      실행하기
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </td>
 
-        <div class="main">
-            <table class="contents-table">
-                <tbody>
-                    <tr>
-                        <td rowspan="2">
-                            <div class="source-code">
-                                <div class="td-title">
-                                    <div class="td-title-items">
-                                        <div class="td-title-item">
-                                            소스 코드
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="source-text">
-                                    <div class="line-numbers">
-                                        <span></span>
-                                    </div>
-                                    <textarea
-                                        id="source"
-                                        wrap="off"
-                                        spellcheck="false"
-                                    ></textarea>
-                                </div>
-                                <script src="./editor.js"></script>
-                                <div class="td-bottom">
-                                    <div class="td-bottom-items">
-                                        <button class="td-bottom-item">
-                                            <img
-                                                src="./img/copy.jpg"
-                                                class="icon"
-                                            />
-                                        </button>
-                                        <button class="td-bottom-item">
-                                            <img
-                                                src="./img/save.jpg"
-                                                class="icon"
-                                            />
-                                        </button>
-                                        <div class="td-bottom-space"></div>
-                                        <button
-                                            class="td-bottom-button clear-button"
-                                            onclick="sourceReset()"
-                                        >
-                                            초기화
-                                        </button>
-                                        <button
-                                            class="td-bottom-button run-button"
-                                            onClick="sourceRun()"
-                                        >
-                                            실행하기
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </td>
+            <td>
+              <div class="input">
+                <div class="td-title">
+                  <div class="td-title-items">
+                    <div class="td-title-item">입력</div>
+                    <div class="td-title-item"></div>
+                    <div class="td-title-item">
+                      <img src="./img/toggle.jpg" class="toggle" />
+                    </div>
+                  </div>
+                </div>
+                <div class="input-text">
+                  <textarea id="input" wrap="off" spellcheck="false"></textarea>
+                </div>
+              </div>
+            </td>
+          </tr>
 
-                        <td>
-                            <div class="input">
-                                <div class="td-title">
-                                    <div class="td-title-items">
-                                        <div class="td-title-item">입력</div>
-                                        <div class="td-title-item"></div>
-                                        <div class="td-title-item">
-                                            <img
-                                                src="./img/toggle.jpg"
-                                                class="toggle"
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="input-text">
-                                    <textarea
-                                        id="input"
-                                        wrap="off"
-                                        spellcheck="false"
-                                    ></textarea>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
+          <tr>
+            <td>
+              <div class="output">
+                <div class="td-title">
+                  <div class="td-title-items">
+                    <div class="td-title-item">출력</div>
+                  </div>
+                </div>
+                <div class="output-text">
+                  <textarea
+                    id="output"
+                    wrap="off"
+                    spellcheck="false"
+                  ></textarea>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </body>
+  <script>
+    function sourceReset() {
+      document.getElementById("source").value = "";
+      document.getElementById("input").value = "";
+      document.getElementById("output").value = "";
+    }
 
-                    <tr>
-                        <td>
-                            <div class="output">
-                                <div class="td-title">
-                                    <div class="td-title-items">
-                                        <div class="td-title-item">출력</div>
-                                    </div>
-                                </div>
-                                <div class="output-text">
-                                    <textarea
-                                        id="output"
-                                        wrap="off"
-                                        spellcheck="false"
-                                    ></textarea>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </body>
-    <script>
-        function sourceReset() {
-            document.getElementById("source").value = "";
-            document.getElementById("input").value = "";
-            document.getElementById("output").value = "";
-        }
-
-        function sourceRun() {
-            $.ajax({
-                url: "/run",
-                method: "POST",
-                dataType: "json",
-                data: {
-                    source: document.getElementById("source").value,
-                    input: document.getElementById("input").value,
-                },
-                success: (result) => {
-                    document.getElementById("output").value = result;
-                },
-                error: function (request, status, error) {
-                    console.log("에러 발생: " + error);
-                },
-            });
-        }
-    </script>
+    function sourceRun() {
+      $.ajax({
+        url: "/run",
+        method: "POST",
+        dataType: "json",
+        data: {
+          source: document.getElementById("source").value,
+          input: document.getElementById("input").value,
+        },
+        success: (result) => {
+          document.getElementById("output").value = result;
+        },
+        error: function (request, status, error) {
+          console.log("에러 발생: " + error);
+        },
+      });
+    }
+  </script>
 </html>

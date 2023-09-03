@@ -106,3 +106,54 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.post(
+  "/login",
+  passport.authenticate("local", {
+    failureRedirect: "/fail",
+  }),
+  (req, res) => {
+    //console.log(Object.values(req.body)[0]); //id
+    //console.log(Object.values(req.body)[1]); //pw
+    const responseData = { redirectTo: "/editor" };
+    res.json(responseData);
+  }
+);
+
+passport.use(
+  new LocalStrategy(
+    {
+      usernameField: "id",
+      passwordField: "pw",
+      session: true,
+      passReqToCallback: false,
+    },
+    function (입력한아이디, 입력한비번, done) {
+      console.log(입력한아이디, 입력한비번);
+      db.collection("login").findOne(
+        { id: 입력한아이디 },
+        function (에러, 결과) {
+          if (에러) return done(에러);
+
+          if (!결과)
+            return done(null, false, {
+              message: "존재하지 않는 아이디입니다.",
+            });
+          if (입력한비번 == 결과.pw) {
+            return done(null, 결과);
+          } else {
+            return done(null, false, { message: "잘못된 비밀번호입니다." });
+          }
+        }
+      );
+    }
+  )
+);
+passport.serializeUser(function (user, done) {
+  done(null, user.id);
+});
+passport.deserializeUser(function (아이디, done) {
+  db.collection("login").findOne({ id: 아이디 }, function (error, result) {
+    done(null, result);
+  });
+});

@@ -15,7 +15,7 @@
       <div class="tolelom">tolelom</div>
 
       <div class="nav-items-left">
-        <div class="nav-item">에디터</div>
+        <div class="nav-item" onclick="location.href='editor.html'">에디터</div>
         <div class="nav-item">문법</div>
         <div class="nav-item">도움말</div>
         <div class="nav-item">
@@ -33,7 +33,8 @@
           type="text"
           placeholder="아이디"
           class="form-control"
-          name="login_user_id"
+          name="id"
+          id="id"
           autofocus="autofocus"
         />
       </div>
@@ -42,10 +43,36 @@
           type="password"
           placeholder="비밀번호"
           class="form-control"
-          name="login_password"
+          name="pw"
+          id="pw"
         />
       </div>
-      <button class="login">로그인</button>
+      <button
+        class="login"
+        onClick="login()"
+        onclick="location.href='login.html'"
+      >
+        로그인
+      </button>
     </div>
   </body>
+  <script>
+    function login() {
+      $.ajax({
+        url: "/login",
+        method: "POST",
+        dataType: "json",
+        data: {
+          id: document.getElementById("id").value,
+          pw: document.getElementById("pw").value,
+        },
+        success: (result) => {
+          window.location.href = result.redirectTo;
+        },
+        error: function (request, status, error) {
+          console.log("에러 발생: " + error);
+        },
+      });
+    }
+  </script>
 </html>
