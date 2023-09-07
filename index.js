@@ -29,69 +29,6 @@ MongoClient.connect(
   }
 );
 
-app.get("/editor", (req, res) => {
-  res.sendFile(__dirname + "/editor.html");
-});
-
-// 소스코드 실행
-app.post("/run", (req, res) => {
-  console.log(req.body);
-  console.log(Object.values(req.body)[0]); //source
-  console.log(Object.values(req.body)[1]); //input
-  console.log("===========================");
-
-  fs.writeFile("main.py", Object.values(req.body)[0], function (err) {
-    if (err) throw err;
-    console.log("source saved!");
-  });
-  fs.writeFile("input.txt", Object.values(req.body)[1], function (err) {
-    if (err) throw err;
-    console.log("input saved!");
-  });
-
-  const pythonCommand = `python main.py`;
-  let pythonErrorCommand = `${pythonCommand} 2> error.txt`;
-
-  if (Object.values(req.body)[1].trim()) {
-    pythonErrorCommand = `${pythonCommand} < input.txt 2> error.txt`;
-  }
-
-  const startTime = new Date();
-  exec(pythonErrorCommand, (error, stdout, stderr) => {
-    const endTime = new Date();
-    const executionTime = (endTime - startTime) / 1000;
-
-    let errorData = "";
-    if (error) {
-      console.error(`exec error: ${error}`);
-      errorData = fs.readFileSync("error.txt", "utf-8");
-      console.error(`stderr: ${errorData}`);
-    }
-    if (stderr) {
-      console.log(`stderr: ${stderr}`);
-    }
-
-    const memoryUsage = (os.freememPercentage() * os.totalmem()) / 1024;
-    os.cpuUsage((cpuUsage) => {
-      console.log(`Execution Time: ${executionTime} seconds`);
-      console.log(`Estimated Memory Usage: ${memoryUsage.toFixed(2)} KB`);
-    });
-
-    res.send(
-      JSON.stringify(
-        `${stdout}\n\nExecution Time: ${executionTime} seconds\nEstimated Memory Usage: ${memoryUsage.toFixed(
-          2
-        )} KB`
-      )
-    );
-
-    //파일 삭제
-    fs.unlinkSync("main.py");
-    fs.unlinkSync("input.txt");
-    fs.unlinkSync("error.txt");
-  });
-});
-
 // 로그인
 app.get("/login", (req, res) => {
   res.sendFile(__dirname + "/login.html");
@@ -155,5 +92,81 @@ passport.serializeUser(function (user, done) {
 passport.deserializeUser(function (아이디, done) {
   db.collection("login").findOne({ id: 아이디 }, function (error, result) {
     done(null, result);
+  });
+});
+
+//에디터
+app.get("/editor", isLogined, (req, res) => {
+  // const loginStatus = document.getElementById("loginStatus");
+  // loginStatus.textContent = "로그아웃";
+  res.sendFile(__dirname + "/editor.html");
+});
+
+function isLogined(req, res, next) {
+  if (req.user) {
+    console.log(req.user);
+    next();
+  } else {
+    console.log(req.user);
+    res.sendFile(__dirname + "/login.html");
+  }
+}
+
+// 소스코드 실행
+app.post("/run", (req, res) => {
+  console.log(req.body);
+  console.log(Object.values(req.body)[0]); //source
+  console.log(Object.values(req.body)[1]); //input
+  console.log("===========================");
+
+  fs.writeFile("main.py", Object.values(req.body)[0], function (err) {
+    if (err) throw err;
+    console.log("source saved!");
+  });
+  fs.writeFile("input.txt", Object.values(req.body)[1], function (err) {
+    if (err) throw err;
+    console.log("input saved!");
+  });
+
+  const pythonCommand = `python main.py`;
+  let pythonErrorCommand = `${pythonCommand} 2> error.txt`;
+
+  if (Object.values(req.body)[1].trim()) {
+    pythonErrorCommand = `${pythonCommand} < input.txt 2> error.txt`;
+  }
+
+  const startTime = new Date();
+  exec(pythonErrorCommand, (error, stdout, stderr) => {
+    const endTime = new Date();
+    const executionTime = (endTime - startTime) / 1000;
+
+    let errorData = "";
+    if (error) {
+      console.error(`exec error: ${error}`);
+      errorData = fs.readFileSync("error.txt", "utf-8");
+      console.error(`stderr: ${errorData}`);
+    }
+    if (stderr) {
+      console.log(`stderr: ${stderr}`);
+    }
+
+    const memoryUsage = (os.freememPercentage() * os.totalmem()) / 1024;
+    os.cpuUsage((cpuUsage) => {
+      console.log(`Execution Time: ${executionTime} seconds`);
+      console.log(`Estimated Memory Usage: ${memoryUsage.toFixed(2)} KB`);
+    });
+
+    res.send(
+      JSON.stringify(
+        `${stdout}\n\nExecution Time: ${executionTime} seconds\nEstimated Memory Usage: ${memoryUsage.toFixed(
+          2
+        )} KB`
+      )
+    );
+
+    //파일 삭제
+    fs.unlinkSync("main.py");
+    fs.unlinkSync("input.txt");
+    fs.unlinkSync("error.txt");
   });
 });
