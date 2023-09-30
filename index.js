@@ -95,10 +95,22 @@ passport.deserializeUser(function (아이디, done) {
   });
 });
 
+//로그아웃
+app.post("/logout", (req, res) => {
+  req.session.destroy((err) => {
+    if (err) {
+      console.log("세션 삭제시에 에러가 발생했습니다.");
+      return;
+    }
+    console.log("세션이 삭제됐습니다.");
+  });
+
+  const responseData = { redirectTo: "/login" };
+  res.json(responseData);
+});
+
 //에디터
 app.get("/editor", isLogined, (req, res) => {
-  // const loginStatus = document.getElementById("loginStatus");
-  // loginStatus.textContent = "로그아웃";
   res.sendFile(__dirname + "/editor.html");
 });
 

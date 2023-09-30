@@ -15,7 +15,7 @@
       <div class="tolelom">tolelom</div>
 
       <div class="nav-items-left">
-        <div class="nav-item" onclick="location.href='editor.html'">에디터</div>
+        <div class="nav-item" onclick="location.href='/editor'">에디터</div>
         <div class="nav-item">문법</div>
         <div class="nav-item">도움말</div>
         <div class="nav-item">
@@ -23,13 +23,7 @@
         </div>
       </div>
       <div class="nav-items-right">
-        <div
-          class="nav-item"
-          onclick="location.href='login.html'"
-          id="loginStatus"
-        >
-          로그인
-        </div>
+        <div class="nav-item" id="logoutBtn" onClick="logout()">로그아웃</div>
         <script src="index.js"></script>
       </div>
     </div>
@@ -140,6 +134,21 @@
         },
         success: (result) => {
           document.getElementById("output").value = result;
+        },
+        error: function (request, status, error) {
+          console.log("에러 발생: " + error);
+        },
+      });
+    }
+
+    function logout() {
+      $.ajax({
+        url: "/logout",
+        method: "POST",
+        dataType: "json",
+        data: {},
+        success: (result) => {
+          window.location.href = result.redirectTo;
         },
         error: function (request, status, error) {
           console.log("에러 발생: " + error);
