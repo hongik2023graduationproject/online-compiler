@@ -109,6 +109,58 @@ app.post("/logout", (req, res) => {
   res.json(responseData);
 });
 
+//회원가입
+app.get("/register", (req, res) => {
+  res.sendFile(__dirname + "/register.html");
+});
+
+app.post("/register", isValid, (req, res) => {
+  // isValid: 아이디 유효하고 비밀번호 체크 성공했으면 회원가입 하기
+  //console.log(Object.values(req.body)[0]); //id
+  //console.log(Object.values(req.body)[1]); //pw
+  //console.log(Object.values(req.body)[2]); //pw_ck
+
+  // 아이디와 비번을 디비에 저장해주자
+  db.collection("login").insertOne(
+    { id: Object.values(req.body)[0], pw: Object.values(req.body)[1] },
+    function (error, res) {
+      if (error) console.log(error);
+      console.log("저장완료");
+    }
+  );
+
+  const responseData = { result: "success", redirectTo: "/login" };
+  res.json(responseData);
+});
+
+async function isValid(req, res, next) {
+  if (await existId(Object.values(req.body)[0])) {
+    //디비에 아이디가 이미 있다
+    const responseData = {
+      result: "fail",
+      error: "아이디 중복",
+    };
+    res.json(responseData);
+  } else if (Object.values(req.body)[1] !== Object.values(req.body)[2]) {
+    // 비번 틀림
+    const responseData = {
+      result: "fail",
+      error: "비밀번호와 비밀번호 확인 문자가 서로 다름",
+    };
+    res.json(responseData);
+  }
+  next();
+}
+
+async function existId(입력한아이디) {
+  const exist = await db.collection("login").findOne({ id: 입력한아이디 });
+  if (exist === null) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
 //에디터
 app.get("/editor", isLogined, (req, res) => {
   res.sendFile(__dirname + "/editor.html");

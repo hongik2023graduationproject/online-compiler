@@ -63,3 +63,15 @@ h3 {
   height: 30px;
   margin: auto;
 }
+
+.main-bottom {
+  display: flex;
+  align-items: center;
+  color: #017fca;
+}
+.forgot-pw {
+  margin-left: 45px;
+}
+.register {
+  margin-left: 25px;
+}

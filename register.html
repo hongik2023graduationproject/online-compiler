@@ -23,11 +23,11 @@
         </div>
       </div>
       <div class="nav-items-right">
-        <div class="nav-item">로그인</div>
+        <div class="nav-item" onclick="location.href='/login'">로그인</div>
       </div>
     </div>
     <div class="main">
-      <h3>로그인</h3>
+      <h3>회원가입</h3>
       <div>
         <input
           type="text"
@@ -48,26 +48,36 @@
         />
       </div>
       <div>
-        <button class="login" onClick="login()">로그인</button>
+        <input
+          type="password"
+          placeholder="비밀번호 확인"
+          class="form-control"
+          name="pw_ck"
+          id="pw_ck"
+        />
       </div>
-      <div class="main-bottom">
-        <div class="forgot-pw">비밀번호 찾기</div>
-        <div class="register" onclick="location.href='/register'">회원가입</div>
+      <div>
+        <button class="login" onClick="register()">회원가입</button>
       </div>
     </div>
   </body>
   <script>
-    function login() {
+    function register() {
       $.ajax({
-        url: "/login",
+        url: "/register",
         method: "POST",
         dataType: "json",
         data: {
           id: document.getElementById("id").value,
           pw: document.getElementById("pw").value,
+          pw_ck: document.getElementById("pw_ck").value,
         },
         success: (result) => {
-          window.location.href = result.redirectTo;
+          if (result.result == "success") {
+            window.location.href = result.redirectTo;
+          } else {
+            alert(result.error);
+          }
         },
         error: function (request, status, error) {
           console.log("에러 발생: " + error);
