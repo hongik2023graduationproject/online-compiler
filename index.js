@@ -16,14 +16,6 @@ MongoClient.connect(
   function (error, client) {
     if (error) return console.log(error);
     db = client.db("online-compiler");
-    // db.collection("login").insertOne(
-    //   { 저장할데이터: 123 },
-    //   function (error, res) {
-    //     if (error) console.log(error);
-    //     console.log("저장완료");
-    //   }
-    // );
-
     app.use(express.static(__dirname));
     app.listen(8080, () => console.log("listening on 8080"));
   }
@@ -115,7 +107,7 @@ app.get("/register", (req, res) => {
 });
 
 app.post("/register", isValid, (req, res) => {
-  // isValid: 아이디 유효하고 비밀번호 체크 성공했으면 회원가입 하기
+  // isValid: 아이디 유효한지랑 비밀번호 체크하는 함수. 성공했으면 회원가입 하기
   //console.log(Object.values(req.body)[0]); //id
   //console.log(Object.values(req.body)[1]); //pw
   //console.log(Object.values(req.body)[2]); //pw_ck
