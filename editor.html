@@ -55,7 +55,7 @@
                     <button class="td-bottom-item">
                       <img src="./img/copy.jpg" class="icon" />
                     </button>
-                    <button class="td-bottom-item">
+                    <button class="td-bottom-item" onclick="sourceSave()">
                       <img src="./img/save.jpg" class="icon" />
                     </button>
                     <div class="td-bottom-space"></div>
@@ -117,6 +117,56 @@
     </div>
   </body>
   <script>
+    window.addEventListener("load", function () {
+      //document 안의 이미지, js 파일 포함 전부 로드가 되었을 경우 실행할 코드
+      $.ajax({
+        url: "/getSource",
+        method: "POST",
+        dataType: "json",
+        data: {},
+        success: (result) => {
+          if (result.status == "exist") {
+            document.getElementById("source").value = result.source;
+          }
+        },
+        error: function (request, status, error) {
+          console.log("에러 발생: " + error);
+        },
+      });
+    });
+
+    function logout() {
+      $.ajax({
+        url: "/logout",
+        method: "POST",
+        dataType: "json",
+        data: {},
+        success: (result) => {
+          window.location.href = result.redirectTo;
+        },
+        error: function (request, status, error) {
+          console.log("에러 발생: " + error);
+        },
+      });
+    }
+
+    function sourceSave() {
+      $.ajax({
+        url: "/save",
+        method: "POST",
+        dataType: "json",
+        data: {
+          source: document.getElementById("source").value,
+        },
+        success: (result) => {
+          alert(result.message);
+        },
+        error: function (request, status, error) {
+          console.log("에러 발생: " + error);
+        },
+      });
+    }
+
     function sourceReset() {
       document.getElementById("source").value = "";
       document.getElementById("input").value = "";
@@ -134,21 +184,6 @@
         },
         success: (result) => {
           document.getElementById("output").value = result;
-        },
-        error: function (request, status, error) {
-          console.log("에러 발생: " + error);
-        },
-      });
-    }
-
-    function logout() {
-      $.ajax({
-        url: "/logout",
-        method: "POST",
-        dataType: "json",
-        data: {},
-        success: (result) => {
-          window.location.href = result.redirectTo;
         },
         error: function (request, status, error) {
           console.log("에러 발생: " + error);

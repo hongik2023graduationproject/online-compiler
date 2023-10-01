@@ -153,17 +153,42 @@ async function existId(입력한아이디) {
   }
 }
 
+//소스코드 저장
+app.post("/save", (req, res) => {
+  // console.log(Object.values(req.body)[0]); //source
+
+  // 소스코드를 현재 로그인중인 사람의 디비에 함께 저장하자
+  db.collection("login").update(req.user, {
+    $set: { source: Object.values(req.body)[0] },
+  });
+
+  const responseData = { message: "소스코드 저장 완료!" };
+  res.json(responseData);
+});
+
+//소스코드 불러오기
+app.post("/getSource", (req, res) => {
+  if (req.user.source === undefined) {
+    const responseData = { status: "not_exist" };
+    res.json(responseData);
+  } else {
+    const responseData = { status: "exist", source: req.user.source };
+    res.json(responseData);
+  }
+});
+
 //에디터
 app.get("/editor", isLogined, (req, res) => {
+  // 로그인 되어있으면
   res.sendFile(__dirname + "/editor.html");
 });
 
 function isLogined(req, res, next) {
   if (req.user) {
-    console.log(req.user);
+    //console.log(req.user);
     next();
   } else {
-    console.log(req.user);
+    //console.log(req.user);
     res.sendFile(__dirname + "/login.html");
   }
 }
