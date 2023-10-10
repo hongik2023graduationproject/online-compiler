@@ -52,11 +52,17 @@
 
 h2 {
   font-size: 30px;
-  letter-spacing: -0.05ch;
+  letter-spacing: -0.1ch;
   margin: 30px 0px 30px;
+}
+@font-face {
+  font-family: "SDGothic";
+  src: url(./fonts/AppleSDGothicNeoR.ttf);
 }
 p {
   font-size: 20px;
+  font-family: "SDGothic";
+  line-height: 1.5em;
 }
 p > span {
   font-weight: bold;
@@ -67,7 +73,7 @@ a {
   color: #0b98ef;
   cursor: pointer;
   margin-top: 10px;
-  font-size: 22px;
+  font-size: 21px;
   text-decoration: none;
   letter-spacing: -0.1ch;
   background-color: rgb(240, 255, 250);
