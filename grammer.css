@@ -70,11 +70,12 @@ a {
   display: block;
   font-size: 20px;
   font-family: "SDGothic";
-  padding-top: 10px;
+  padding-top: 7px;
+  padding-bottom: 7px;
   padding-left: 15%;
 }
 .menu {
-  padding-top: 10px;
+  padding-top: 15px;
 }
 .menu li {
   padding-left: 10%;
@@ -84,14 +85,26 @@ a {
   max-width: 70%;
   padding: 30px 0px 0px 50px;
   margin: 0 auto;
+  font-family: "SDGothic";
 }
 h1 {
   font-size: 30px;
-  letter-spacing: -0.1ch;
-  margin: 30px 0px 30px;
+  margin: 30px 0px 10px;
 }
-p {
+hr {
+  margin-bottom: 20px;
+}
+p,
+pre {
   font-size: 20px;
   font-family: "SDGothic";
   line-height: 1.5em;
+  letter-spacing: 0.02ch;
+}
+.code {
+  padding: 1em;
+  background: #f3f3f3;
+  color: #444;
+  line-height: 1.67;
+  border-radius: 10px;
 }
