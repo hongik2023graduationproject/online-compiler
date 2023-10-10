@@ -21,6 +21,21 @@ MongoClient.connect(
   }
 );
 
+//문법페이지
+app.get("/grammer", (req, res) => {
+  res.sendFile(__dirname + "/grammer.html");
+});
+
+app.get("/grammer/:id", function (req, res) {
+  db.collection("grammer").findOne(
+    { _id: parseInt(req.params.id) },
+    function (error, result) {
+      console.log(result);
+      res.render("grammer.ejs", { data: result });
+    }
+  );
+});
+
 // 로그인
 app.get("/login", (req, res) => {
   res.sendFile(__dirname + "/login.html");

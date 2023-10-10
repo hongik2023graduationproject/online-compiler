@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>tolelom</title>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../grammer.css" />
+  </head>
+  <body>
+    <div class="nav">
+      <div>
+        <img
+          src="../img/king.jpg"
+          class="logo"
+          onclick="location.href='/'"
+          style="cursor: pointer"
+        />
+      </div>
+      <div class="tolelom" onclick="location.href='/'" style="cursor: pointer">
+        tolelom
+      </div>
+
+      <div class="nav-items-left">
+        <div
+          class="nav-item"
+          onclick="location.href='/editor'"
+          style="cursor: pointer"
+        >
+          에디터
+        </div>
+        <div
+          class="nav-item"
+          onclick="location.href='/grammer'"
+          style="cursor: pointer"
+        >
+          문법
+        </div>
+        <div class="nav-item">도움말</div>
+        <div class="nav-item">
+          <img src="../img/search.jpg" class="search" />
+        </div>
+      </div>
+      <div class="nav-items-right">
+        <div
+          class="nav-item"
+          onclick="location.href='/login'"
+          style="cursor: pointer"
+        >
+          로그인
+        </div>
+      </div>
+    </div>
+    <aside class="sidebar">
+      <div class="side-title">📘 tolelom 기본 문법</div>
+      <ul>
+        <li class="menu">
+          <a href="/grammer/1">menu1</a>
+          <ul>
+            <li><a href="#">text1</a></li>
+            <li><a href="#">text2</a></li>
+            <li><a href="#">text3</a></li>
+            <li><a href="#">text4</a></li>
+          </ul>
+        </li>
+        <li class="menu">
+          <a href="#">menu2</a>
+          <ul>
+            <li><a href="#">text1</a></li>
+            <li><a href="#">text2</a></li>
+            <li><a href="#">text3</a></li>
+            <li><a href="#">text4</a></li>
+          </ul>
+        </li>
+        <li class="menu">
+          <a href="#">menu3</a>
+          <ul>
+            <li><a href="#">text1</a></li>
+            <li><a href="#">text2</a></li>
+            <li><a href="#">text3</a></li>
+            <li><a href="#">text4</a></li>
+          </ul>
+        </li>
+      </ul>
+    </aside>
+    <div class="main">
+      <h4>제목 : <%= data.title %></h4>
+      <h4>설명 : <%= data.description %></h4>
+      <h4>코드 : <%= data.code %></h4>
+    </div>
+    <div style="height: 200px"></div>
+  </body>
+  <script></script>
+</html>

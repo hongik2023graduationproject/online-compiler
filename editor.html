@@ -10,20 +10,46 @@
   <body>
     <div class="nav">
       <div>
-        <img src="./img/king.jpg" class="logo" onclick="location.href='/'" />
+        <img
+          src="./img/king.jpg"
+          class="logo"
+          onclick="location.href='/'"
+          style="cursor: pointer"
+        />
       </div>
-      <div class="tolelom" onclick="location.href='/'">tolelom</div>
+      <div class="tolelom" onclick="location.href='/'" style="cursor: pointer">
+        tolelom
+      </div>
 
       <div class="nav-items-left">
-        <div class="nav-item" onclick="location.href='/editor'">에디터</div>
-        <div class="nav-item">문법</div>
+        <div
+          class="nav-item"
+          onclick="location.href='/editor'"
+          style="cursor: pointer"
+        >
+          에디터
+        </div>
+        <div
+          class="nav-item"
+          onclick="location.href='/grammer'"
+          style="cursor: pointer"
+        >
+          문법
+        </div>
         <div class="nav-item">도움말</div>
         <div class="nav-item">
           <img src="./img/search.jpg" class="search" />
         </div>
       </div>
       <div class="nav-items-right">
-        <div class="nav-item" id="logoutBtn" onClick="logout()">로그아웃</div>
+        <div
+          class="nav-item"
+          id="logoutBtn"
+          onClick="logout()"
+          style="cursor: pointer"
+        >
+          로그아웃
+        </div>
         <script src="index.js"></script>
       </div>
     </div>
@@ -55,19 +81,25 @@
                     <button class="td-bottom-item">
                       <img src="./img/copy.jpg" class="icon" />
                     </button>
-                    <button class="td-bottom-item" onclick="sourceSave()">
+                    <button
+                      class="td-bottom-item"
+                      onclick="sourceSave()"
+                      style="cursor: pointer"
+                    >
                       <img src="./img/save.jpg" class="icon" />
                     </button>
                     <div class="td-bottom-space"></div>
                     <button
                       class="td-bottom-button clear-button"
                       onclick="sourceReset()"
+                      style="cursor: pointer"
                     >
                       초기화
                     </button>
                     <button
                       class="td-bottom-button run-button"
                       onClick="sourceRun()"
+                      style="cursor: pointer"
                     >
                       실행하기
                     </button>

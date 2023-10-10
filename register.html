@@ -10,20 +10,45 @@
   <body>
     <div class="nav">
       <div>
-        <img src="./img/king.jpg" class="logo" onclick="location.href='/'" />
+        <img
+          src="./img/king.jpg"
+          class="logo"
+          onclick="location.href='/'"
+          style="cursor: pointer"
+        />
       </div>
-      <div class="tolelom" onclick="location.href='/'">tolelom</div>
+      <div class="tolelom" onclick="location.href='/'" style="cursor: pointer">
+        tolelom
+      </div>
 
       <div class="nav-items-left">
-        <div class="nav-item" onclick="location.href='/editor'">에디터</div>
-        <div class="nav-item">문법</div>
+        <div
+          class="nav-item"
+          onclick="location.href='/editor'"
+          style="cursor: pointer"
+        >
+          에디터
+        </div>
+        <div
+          class="nav-item"
+          onclick="location.href='/grammer'"
+          style="cursor: pointer"
+        >
+          문법
+        </div>
         <div class="nav-item">도움말</div>
         <div class="nav-item">
           <img src="./img/search.jpg" class="search" />
         </div>
       </div>
       <div class="nav-items-right">
-        <div class="nav-item" onclick="location.href='/login'">로그인</div>
+        <div
+          class="nav-item"
+          onclick="location.href='/login'"
+          style="cursor: pointer"
+        >
+          로그인
+        </div>
       </div>
     </div>
     <div class="main">
@@ -57,7 +82,9 @@
         />
       </div>
       <div>
-        <button class="login" onClick="register()">회원가입</button>
+        <button class="login" onClick="register()" style="cursor: pointer">
+          회원가입
+        </button>
       </div>
     </div>
   </body>

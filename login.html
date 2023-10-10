@@ -10,20 +10,39 @@
   <body>
     <div class="nav">
       <div>
-        <img src="./img/king.jpg" class="logo" onclick="location.href='/'" />
+        <img
+          src="./img/king.jpg"
+          class="logo"
+          onclick="location.href='/'"
+          style="cursor: pointer"
+        />
       </div>
-      <div class="tolelom" onclick="location.href='/'">tolelom</div>
+      <div class="tolelom" onclick="location.href='/'" style="cursor: pointer">
+        tolelom
+      </div>
 
       <div class="nav-items-left">
-        <div class="nav-item" onclick="location.href='/editor'">에디터</div>
-        <div class="nav-item">문법</div>
+        <div
+          class="nav-item"
+          onclick="location.href='/editor'"
+          style="cursor: pointer"
+        >
+          에디터
+        </div>
+        <div
+          class="nav-item"
+          onclick="location.href='/grammer'"
+          style="cursor: pointer"
+        >
+          문법
+        </div>
         <div class="nav-item">도움말</div>
         <div class="nav-item">
           <img src="./img/search.jpg" class="search" />
         </div>
       </div>
       <div class="nav-items-right">
-        <div class="nav-item">로그인</div>
+        <div class="nav-item" style="cursor: pointer">로그인</div>
       </div>
     </div>
     <div class="main">
@@ -48,11 +67,19 @@
         />
       </div>
       <div>
-        <button class="login" onClick="login()">로그인</button>
+        <button class="login" onClick="login()" style="cursor: pointer">
+          로그인
+        </button>
       </div>
       <div class="main-bottom">
-        <div class="forgot-pw">비밀번호 찾기</div>
-        <div class="register" onclick="location.href='/register'">회원가입</div>
+        <div class="forgot-pw" style="cursor: pointer">비밀번호 찾기</div>
+        <div
+          class="register"
+          onclick="location.href='/register'"
+          style="cursor: pointer"
+        >
+          회원가입
+        </div>
       </div>
     </div>
   </body>
