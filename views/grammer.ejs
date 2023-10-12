@@ -63,9 +63,9 @@
         <li class="menu">
           <a href="/grammer/10">1. tolelom 맛보기</a>
           <ul>
-            <li><a href="/grammer/11">1.1 기본 규칙</a></li>
-            <li><a href="/grammer/12">1.2 변수</a></li>
-            <li><a href="/grammer/13">1.3 사칙 연산</a></li>
+            <li><a href="/grammer/11">1.1 안녕, 세상아!</a></li>
+            <li><a href="/grammer/12">1.2 변수와 사칙연산</a></li>
+            <li><a href="/grammer/13">1.3 기본 규칙</a></li>
           </ul>
         </li>
         <li class="menu">
@@ -96,13 +96,47 @@
       </ul>
     </aside>
     <div class="main">
-      <h1><%= data.title %></h1>
+      <h1><%= data.title1 %></h1>
       <hr />
-      <pre><%= data.description %></pre>
+      <pre><%= data.body1 %></pre>
+
+      <% if (typeof data.subtitle1 !== 'undefined') { %>
       <br />
-      <% if (typeof data.code !== 'undefined' && data.code !== "") { %>
-      <pre class="code"><%= data.code %></pre>
+      <h3><%= data.subtitle1 %></h3>
       <% } %>
+      <pre><%= data.subbody1 %></pre>
+      <% if (typeof data.subcode1 !== 'undefined') { %>
+      <br />
+      <pre class="code"><%= data.subcode1 %></pre>
+      <% } %>
+      <div></div>
+      <% if (typeof data.subtitle2 !== 'undefined') { %>
+      <br />
+      <h3><%= data.subtitle2 %></h3>
+      <% } %>
+      <pre><%= data.subbody2 %></pre>
+      <% if (typeof data.subcode2 !== 'undefined') { %>
+      <br />
+      <pre class="code"><%= data.subcode2 %></pre>
+      <br />
+      <br />
+      <% } %>
+
+      <pre><%= data.subbody3 %></pre>
+      <% if (typeof data.subcode3 !== 'undefined' ) { %>
+      <br />
+      <pre class="code"><%= data.subcode3 %></pre>
+      <br />
+      <% } %>
+      <pre><%= data.subbody4 %></pre>
+
+      <% if (typeof data.code1 !== 'undefined' ) { %>
+      <br />
+      <pre class="code"><%= data.code1 %></pre>
+      <br />
+      <% } %>
+      <pre><%= data.body2 %></pre>
+      <br />
     </div>
     <div style="height: 200px"></div>
   </body>
