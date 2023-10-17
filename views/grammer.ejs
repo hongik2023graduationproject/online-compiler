@@ -100,6 +100,13 @@
       <hr />
       <pre><%= data.body1 %></pre>
 
+      <% if (typeof data.code1 !== 'undefined' ) { %>
+      <br />
+      <pre class="code"><%= data.code1 %></pre>
+      <br />
+      <% } %>
+      <pre><%= data.body2 %></pre>
+
       <% if (typeof data.subtitle1 !== 'undefined') { %>
       <br />
       <h3><%= data.subtitle1 %></h3>
@@ -108,7 +115,9 @@
       <% if (typeof data.subcode1 !== 'undefined') { %>
       <br />
       <pre class="code"><%= data.subcode1 %></pre>
+      <br />
       <% } %>
+      <pre><%= data.subbody11 %></pre>
       <div></div>
       <% if (typeof data.subtitle2 !== 'undefined') { %>
       <br />
@@ -130,12 +139,6 @@
       <% } %>
       <pre><%= data.subbody4 %></pre>
 
-      <% if (typeof data.code1 !== 'undefined' ) { %>
-      <br />
-      <pre class="code"><%= data.code1 %></pre>
-      <br />
-      <% } %>
-      <pre><%= data.body2 %></pre>
       <br />
     </div>
     <div style="height: 200px"></div>
