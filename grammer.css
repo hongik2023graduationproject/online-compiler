@@ -14,6 +14,10 @@
   margin-left: 12px;
   font-weight: bold;
 }
+@font-face {
+  font-family: "SDGothic";
+  src: url(./fonts/AppleSDGothicNeoR.ttf);
+}
 
 .nav {
   height: 75px;
@@ -33,15 +37,13 @@
 .nav-item {
   margin-left: 30px;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 16px;
+  font-family: "SDGothic";
+  letter-spacing: 0.2ch;
 }
 .search {
   width: 18px;
   height: 15px;
-}
-@font-face {
-  font-family: "SDGothic";
-  src: url(./fonts/AppleSDGothicNeoR.ttf);
 }
 
 .sidebar {
@@ -111,4 +113,15 @@ pre {
   color: #444;
   line-height: 1.67;
   border-radius: 10px;
+}
+table {
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align: left;
+}
+th,
+td {
+  border: 1px solid black;
+  padding: 11px 12px 11px 11px;
+  font-size: 18px;
 }

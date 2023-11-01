@@ -14,6 +14,10 @@
   margin-left: 12px;
   font-weight: bold;
 }
+@font-face {
+  font-family: "SDGothic";
+  src: url(./fonts/AppleSDGothicNeoR.ttf);
+}
 
 .nav {
   height: 75px;
@@ -33,7 +37,9 @@
 .nav-item {
   margin-left: 30px;
   font-weight: bold;
-  font-size: 15px;
+  font-size: 16px;
+  font-family: "SDGothic";
+  letter-spacing: 0.2ch;
 }
 .search {
   width: 18px;

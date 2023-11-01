@@ -96,34 +96,79 @@
       </ul>
     </aside>
     <div class="main">
+      <!--제목1-->
       <h1><%= data.title1 %></h1>
       <hr />
+      <!--본문1-->
+      <% if (typeof data.body1 !== 'undefined' ) { %>
       <pre><%= data.body1 %></pre>
-
+      <br />
+      <% } %>
+      <!--코드1-->
       <% if (typeof data.code1 !== 'undefined' ) { %>
       <br />
       <pre class="code"><%= data.code1 %></pre>
       <br />
       <% } %>
+      <!--표1-->
+      <% if (typeof data.table1 !== 'undefined' ) { %>
+      <br />
+      <table>
+        <tr>
+          <th>키워드</th>
+          <th>자료형 설명</th>
+          <th>예시</th>
+        </tr>
+        <tr>
+          <td>정수</td>
+          <td>정수 형태의 숫자를 나타냅니다.</td>
+          <td>1, 2, 100</td>
+        </tr>
+        <tr>
+          <td>실수</td>
+          <td>실수 형태의 숫자를 나타냅니다.</td>
+          <td>1.1, 3.14</td>
+        </tr>
+        <tr>
+          <td>문자열</td>
+          <td>문자의 나열을 나타냅니다.</td>
+          <td>“철수”, “이것은 톨레롬”</td>
+        </tr>
+        <tr>
+          <td>불리언</td>
+          <td>참, 거짓을 나타낼 때 사용하는 자료형</td>
+          <td>참, 거짓</td>
+        </tr>
+      </table>
+      <br />
+      <br />
+      <% } %>
+      <!--본문2-->
       <pre><%= data.body2 %></pre>
 
+      <!--소제목1-->
       <% if (typeof data.subtitle1 !== 'undefined') { %>
-      <br />
       <h3><%= data.subtitle1 %></h3>
       <% } %>
+      <!--소본문1-->
       <pre><%= data.subbody1 %></pre>
+      <!--소코드1-->
       <% if (typeof data.subcode1 !== 'undefined') { %>
       <br />
       <pre class="code"><%= data.subcode1 %></pre>
       <br />
       <% } %>
+      <!--소본문11-->
       <pre><%= data.subbody11 %></pre>
-      <div></div>
+
+      <!--소제목2-->
       <% if (typeof data.subtitle2 !== 'undefined') { %>
       <br />
       <h3><%= data.subtitle2 %></h3>
       <% } %>
+      <!--소본문2-->
       <pre><%= data.subbody2 %></pre>
+      <!--소코드2-->
       <% if (typeof data.subcode2 !== 'undefined') { %>
       <br />
       <pre class="code"><%= data.subcode2 %></pre>
@@ -131,12 +176,15 @@
       <br />
       <% } %>
 
+      <!--소본문3-->
       <pre><%= data.subbody3 %></pre>
+      <!--소코드3-->
       <% if (typeof data.subcode3 !== 'undefined' ) { %>
       <br />
       <pre class="code"><%= data.subcode3 %></pre>
       <br />
       <% } %>
+      <!--소본문4-->
       <pre><%= data.subbody4 %></pre>
 
       <br />
