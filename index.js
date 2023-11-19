@@ -215,7 +215,7 @@ app.post("/run", (req, res) => {
   console.log(Object.values(req.body)[1]); //input
   console.log("===========================");
 
-  fs.writeFile("main.py", Object.values(req.body)[0], function (err) {
+  fs.writeFile("main.txt", Object.values(req.body)[0], function (err) {
     if (err) throw err;
     console.log("source saved!");
   });
@@ -224,7 +224,7 @@ app.post("/run", (req, res) => {
     console.log("input saved!");
   });
 
-  const pythonCommand = `python main.py`;
+  const pythonCommand = `./tolelom`;
   let pythonErrorCommand = `${pythonCommand}`; //`${pythonCommand} 2> error.txt`;
 
   if (Object.values(req.body)[1].trim()) {
@@ -262,7 +262,7 @@ app.post("/run", (req, res) => {
     );
 
     //파일 삭제
-    fs.unlinkSync("main.py");
+    fs.unlinkSync("main.txt");
     fs.unlinkSync("input.txt");
     //fs.unlinkSync("error.txt");
   });
