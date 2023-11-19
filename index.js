@@ -225,10 +225,10 @@ app.post("/run", (req, res) => {
   });
 
   const pythonCommand = `python main.py`;
-  let pythonErrorCommand = `${pythonCommand} 2> error.txt`;
+  let pythonErrorCommand = `${pythonCommand}`; //`${pythonCommand} 2> error.txt`;
 
   if (Object.values(req.body)[1].trim()) {
-    pythonErrorCommand = `${pythonCommand} < input.txt 2> error.txt`;
+    pythonErrorCommand = `${pythonCommand} < input.txt`; //`${pythonCommand} < input.txt 2> error.txt`
   }
 
   const startTime = new Date();
@@ -236,6 +236,7 @@ app.post("/run", (req, res) => {
     const endTime = new Date();
     const executionTime = (endTime - startTime) / 1000;
 
+    /*
     let errorData = "";
     if (error) {
       console.error(`exec error: ${error}`);
@@ -244,7 +245,7 @@ app.post("/run", (req, res) => {
     }
     if (stderr) {
       console.log(`stderr: ${stderr}`);
-    }
+    }*/
 
     const memoryUsage = (os.freememPercentage() * os.totalmem()) / 1024;
     os.cpuUsage((cpuUsage) => {
@@ -263,6 +264,6 @@ app.post("/run", (req, res) => {
     //파일 삭제
     fs.unlinkSync("main.py");
     fs.unlinkSync("input.txt");
-    fs.unlinkSync("error.txt");
+    //fs.unlinkSync("error.txt");
   });
 });
