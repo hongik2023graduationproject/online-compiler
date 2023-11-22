@@ -1,0 +1,154 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.logo {
+  width: 30px;
+  height: 30px;
+  margin-left: 290px;
+}
+.tolelom {
+  font-family: Brush Script MT;
+  font-size: 32px;
+  margin-left: 12px;
+  font-weight: bold;
+}
+@font-face {
+  font-family: "SDGothic";
+  src: url(./fonts/AppleSDGothicNeoR.ttf);
+}
+
+.nav {
+  height: 75px;
+  border-bottom: 1.5px solid #e7e7e6;
+  display: flex;
+  align-items: center;
+}
+.nav-items-left {
+  display: flex;
+  margin-left: 12px;
+}
+.nav-items-right {
+  display: flex;
+  margin-left: auto;
+  margin-right: 290px;
+}
+.nav-item {
+  margin-left: 30px;
+  font-weight: bold;
+  font-size: 16px;
+  font-family: "SDGothic";
+  letter-spacing: 0.2ch;
+}
+.search {
+  width: 18px;
+  height: 15px;
+}
+
+.sidebar {
+  border-right: 1.5px solid #e7e7e6;
+  position: fixed;
+  top: 75px;
+  bottom: 0px;
+  left: 0px;
+  width: 15%;
+}
+.side-title {
+  padding-top: 12px;
+  padding-left: 5%;
+  font-size: 20px;
+  font-family: "SDGothic";
+  font-weight: bold;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+.sidebar a:hover {
+  background-color: #e7e7e6;
+}
+.sidebar ul > li > a {
+  display: block;
+  font-size: 20px;
+  font-family: "SDGothic";
+  padding-top: 7px;
+  padding-bottom: 7px;
+  padding-left: 15%;
+}
+.menu {
+  padding-top: 15px;
+}
+.menu li {
+  padding-left: 10%;
+}
+
+.main {
+  max-width: 70%;
+  padding: 30px 0px 0px 50px;
+  margin: 0 auto;
+  font-family: "SDGothic";
+}
+h1 {
+  font-size: 30px;
+  margin: 30px 0px 10px;
+}
+hr {
+  margin-bottom: 20px;
+}
+.guest-input {
+  display: grid;
+  grid-template-columns: 50px auto;
+  font-size: 20px;
+  font-family: "SDGothic";
+  line-height: 1.5em;
+  letter-spacing: 0.02ch;
+}
+.guest-input-item {
+  display: flex;
+  flex-direction: column;
+}
+#name {
+  width: 160px;
+  height: 40px;
+  resize: none;
+  font-size: 20px;
+  font-family: "SDGothic";
+  line-height: 1.5em;
+  letter-spacing: 0.02ch;
+  margin-bottom: 10px;
+  padding-top: 2px;
+  padding-left: 5px;
+  border-color: gray;
+}
+#content {
+  width: 90%;
+  height: 120px;
+  resize: none;
+  font-size: 20px;
+  font-family: "SDGothic";
+  line-height: 1.5em;
+  letter-spacing: 0.02ch;
+  margin-bottom: 20px;
+  padding-top: 2px;
+  padding-left: 5px;
+  border-color: gray;
+  /* border-color: #63bbee;  */
+}
+#save {
+  float: right;
+  margin-right: 10%;
+  width: 120px;
+  height: 40px;
+  font-size: 17px;
+  font-family: "SDGothic";
+  line-height: 1.5em;
+  letter-spacing: 0.02ch;
+  background-color: #c8c8c8;
+  border: none;
+}
+#save:hover {
+  cursor: pointer;
+
+  background-color: #97cff0;
+}

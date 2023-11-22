@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>tolelom</title>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="./login.css" />
+    <link rel="stylesheet" type="text/css" href="./guest.css" />
   </head>
   <body>
     <div class="nav">
@@ -48,64 +48,49 @@
         </div>
       </div>
       <div class="nav-items-right">
-        <div class="nav-item" style="cursor: pointer">로그인</div>
-      </div>
-    </div>
-    <div class="main">
-      <h3>로그인</h3>
-      <div>
-        <input
-          type="text"
-          placeholder="아이디"
-          class="form-control"
-          name="id"
-          id="id"
-          autofocus="autofocus"
-        />
-      </div>
-      <div>
-        <input
-          type="password"
-          placeholder="비밀번호"
-          class="form-control"
-          name="pw"
-          id="pw"
-        />
-      </div>
-      <div>
-        <button class="login" onClick="login()" style="cursor: pointer">
-          로그인
-        </button>
-      </div>
-      <div class="main-bottom">
-        <div class="forgot-pw" style="cursor: pointer">비밀번호 찾기</div>
         <div
-          class="register"
-          onclick="location.href='/register'"
+          class="nav-item"
+          onclick="location.href='/login'"
           style="cursor: pointer"
         >
-          회원가입
+          로그인
         </div>
       </div>
     </div>
+
+    <div class="main">
+      <h1>🔽 방명록을 남겨주세요 : ) 🔽</h1>
+      <hr />
+      <div class="guest-input">
+        <div>이름</div>
+        <textarea id="name"></textarea>
+        <div>내용</div>
+        <textarea id="content"></textarea>
+      </div>
+      <button id="save" onClick="guestSave()">등록</button>
+    </div>
+    <div style="height: 200px"></div>
   </body>
   <script>
-    function login() {
+    function guestSave() {
       $.ajax({
-        url: "/login",
+        url: "/comment",
         method: "POST",
         dataType: "json",
         data: {
-          id: document.getElementById("id").value,
-          pw: document.getElementById("pw").value,
+          source: document.getElementById("name").value,
+          input: document.getElementById("content").value,
         },
         success: (result) => {
-          window.location.href = result.redirectTo;
+          alert(result.message);
         },
         error: function (request, status, error) {
           console.log("에러 발생: " + error);
         },
       });
+
+      document.getElementById("name").value = "";
+      document.getElementById("content").value = "";
     }
   </script>
 </html>

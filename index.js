@@ -36,6 +36,24 @@ app.get("/grammer/:id", function (req, res) {
   );
 });
 
+//방명록 페이지
+app.get("/guest", (req, res) => {
+  res.sendFile(__dirname + "/guest.html");
+});
+
+app.post("/comment", (req, res) => {
+  db.collection("guest").insertOne(
+    { name: Object.values(req.body)[0], content: Object.values(req.body)[1] },
+    function (error, res) {
+      if (error) console.log(error);
+      console.log("저장완료");
+    }
+  );
+
+  const responseData = { message: "방명록 저장 완료!" };
+  res.json(responseData);
+});
+
 // 로그인
 app.get("/login", (req, res) => {
   res.sendFile(__dirname + "/login.html");
