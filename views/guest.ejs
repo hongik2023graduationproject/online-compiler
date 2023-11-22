@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>tolelom</title>
     <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <link rel="stylesheet" type="text/css" href="./guest.css" />
+    <link rel="stylesheet" type="text/css" href="../guest.css" />
   </head>
   <body>
     <div class="nav">
@@ -61,17 +61,31 @@
     <div class="main">
       <h1>🔽 방명록을 남겨주세요 : ) 🔽</h1>
       <hr />
-      <div class="guest-input">
-        <div>이름</div>
-        <textarea id="name"></textarea>
-        <div>내용</div>
-        <textarea id="content"></textarea>
+      <div class="main-content">
+        <div class="guest-input">
+          <div>이름</div>
+          <textarea id="name"></textarea>
+          <div>내용</div>
+          <textarea id="content" wrap="off"></textarea>
+        </div>
+        <button id="save" onClick="guestSave()">등록</button>
+
+        <div class="comment">
+          <% for (var i = posts.length-1; i >=0; i--){ %>
+          <div class="comment-item">
+            <hr />
+            <button class="delete" data-id="<%= posts[i]._id %>">삭제</button>
+            <pre class="comment-name"><%= posts[i].name %></pre>
+            <pre><%= posts[i].content %></pre>
+          </div>
+          <% } %>
+        </div>
       </div>
-      <button id="save" onClick="guestSave()">등록</button>
     </div>
     <div style="height: 200px"></div>
   </body>
   <script>
+    //댓글 등록
     function guestSave() {
       $.ajax({
         url: "/comment",
@@ -82,7 +96,8 @@
           input: document.getElementById("content").value,
         },
         success: (result) => {
-          alert(result.message);
+          //alert(result.message);
+          location.reload(true);
         },
         error: function (request, status, error) {
           console.log("에러 발생: " + error);
@@ -92,5 +107,24 @@
       document.getElementById("name").value = "";
       document.getElementById("content").value = "";
     }
+
+    //댓글 삭제
+    $(".delete").click(function (e) {
+      var 글번호 = e.target.dataset.id;
+      var 지금누른거 = $(this);
+
+      $.ajax({
+        method: "DELETE",
+        url: "/delete",
+        data: { _id: 글번호 },
+      })
+        .done(function (result) {
+          console.log("성공했어요!");
+          지금누른거.parent("div").fadeOut();
+        })
+        .fail(function (a, b, c) {
+          console.log(a, b, c);
+        });
+    });
   </script>
 </html>

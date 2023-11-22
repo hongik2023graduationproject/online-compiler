@@ -89,6 +89,9 @@ a {
   margin: 0 auto;
   font-family: "SDGothic";
 }
+.main-content {
+  padding-left: 3%;
+}
 h1 {
   font-size: 30px;
   margin: 30px 0px 10px;
@@ -149,6 +152,43 @@ hr {
 }
 #save:hover {
   cursor: pointer;
-
   background-color: #97cff0;
+}
+
+.comment {
+  margin-top: 150px;
+}
+.comment-item {
+  margin-top: 1%;
+}
+.comment hr {
+  width: 90%;
+  margin-bottom: 0px;
+}
+pre {
+  font-size: 20px;
+  font-family: "SDGothic";
+  line-height: 1.5em;
+  letter-spacing: 0.02ch;
+}
+.comment-name {
+  margin-top: 1%;
+  font-weight: bold;
+}
+.delete {
+  float: right;
+  margin-right: 11%;
+  margin-top: 1%;
+  width: 50px;
+  height: 30px;
+  font-size: 14px;
+  font-family: "SDGothic";
+  line-height: 1.5em;
+  letter-spacing: 0.02ch;
+  background-color: #e7b8b8;
+  border: none;
+}
+.delete:hover {
+  cursor: pointer;
+  background-color: #f09797;
 }

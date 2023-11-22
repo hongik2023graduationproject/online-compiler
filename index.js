@@ -38,20 +38,49 @@ app.get("/grammer/:id", function (req, res) {
 
 //방명록 페이지
 app.get("/guest", (req, res) => {
-  res.sendFile(__dirname + "/guest.html");
+  db.collection("guest")
+    .find()
+    .toArray(function (error, result) {
+      res.render("guest.ejs", { posts: result });
+    });
 });
 
 app.post("/comment", (req, res) => {
-  db.collection("guest").insertOne(
-    { name: Object.values(req.body)[0], content: Object.values(req.body)[1] },
-    function (error, res) {
-      if (error) console.log(error);
-      console.log("저장완료");
+  db.collection("counter").findOne(
+    { name: "댓글 개수" },
+    function (error, result) {
+      var commentNum = result.totalComment;
+
+      db.collection("guest").insertOne(
+        {
+          _id: commentNum + 1,
+          name: Object.values(req.body)[0],
+          content: Object.values(req.body)[1],
+        },
+        function (error, res) {
+          if (error) console.log(error);
+          console.log("저장완료");
+
+          db.collection("counter").updateOne(
+            { name: "댓글 개수" },
+            { $inc: { totalComment: 1 } }
+          );
+        }
+      );
+
+      const responseData = { message: "방명록 저장 완료!" };
+      res.json(responseData);
     }
   );
+});
 
-  const responseData = { message: "방명록 저장 완료!" };
-  res.json(responseData);
+app.delete("/delete", function (req, res) {
+  console.log(req.body);
+  req.body._id = parseInt(req.body._id);
+  db.collection("guest").deleteOne(req.body, function (error, result) {
+    console.log("삭제완료");
+    res.status(200).send({ message: "성공했습니다" });
+  });
 });
 
 // 로그인
