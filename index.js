@@ -262,11 +262,11 @@ app.post("/run", (req, res) => {
   console.log(Object.values(req.body)[1]); //input
   console.log("===========================");
 
-  fs.writeFile("main.txt", Object.values(req.body)[0], function (err) {
+  fs.writeFile("main.tol", Object.values(req.body)[0], function (err) {
     if (err) throw err;
     console.log("source saved!");
   });
-  fs.writeFile("input.txt", Object.values(req.body)[1], function (err) {
+  fs.writeFile("input.tol", Object.values(req.body)[1], function (err) {
     if (err) throw err;
     console.log("input saved!");
   });
@@ -309,8 +309,8 @@ app.post("/run", (req, res) => {
     );
 
     //파일 삭제
-    fs.unlinkSync("main.txt");
-    fs.unlinkSync("input.txt");
+    fs.unlinkSync("main.tol");
+    fs.unlinkSync("input.tol");
     //fs.unlinkSync("error.txt");
   });
 });
